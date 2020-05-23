@@ -1,15 +1,39 @@
-//
-//  main.cpp
-//  LAB_7_STAHL_DANIEL
-//
-//  Created by Daniel Stahl on 5/23/20.
-//  Copyright © 2020 Daniel Stahl. All rights reserved.
-//
-
+#include <string>
 #include <iostream>
+#include <fstream>
+#include <vector>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+using namespace std;
+
+int main() {
+    ifstream inFile;
+    string input;
+    vector<string> vecExpress;
+    
+    inFile.open("/Users/stahl/Desktop/Pierce College/COSCI 136/LAB_7_STAHL_DANIEL/data.txt");
+    
+    if (inFile) {
+        cout << "File loaded\n";
+    } else {
+        cout << "No file exists\n";
+        exit (1);
+    }
+    
+    while (getline(inFile, input)) {
+        inFile >> input;
+        vecExpress.push_back(input);
+    }
+    
+    int x = 0;
+    while (vecExpress.size() > x) {
+        cout << vecExpress.at(x) << endl;
+        x++;
+    }
+    
+    
+    
+    
+    
+    
+    
 }
