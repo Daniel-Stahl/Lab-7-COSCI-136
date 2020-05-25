@@ -32,8 +32,6 @@ int main() {
         exit (1);
     }
     
-    
-    
     while (getline(inFile, input)) {
         inFile >> input;
         vecExpress.push_back(input);
@@ -42,41 +40,6 @@ int main() {
     
     ExpressionTree ET;
     
-    ET.MakeTree(vecExpress.at(4));
-    
-    
-//    int x = 0;
-//
-//    char theRoot = 'r';
-//
-//    while (vecExpress.size() > x) {
-//        int y = 0;
-//
-//        while (vecExpress.at(x).size() > y) {
-//            cout << vecExpress.at(x).at(y);
-//
-//            if (vecExpress.at(x).at(y) == '+' || vecExpress.at(x).at(y) == '-') {
-//                theRoot = vecExpress.at(x).at(y);
-//            }
-//
-//            y++;
-//        }
-//
-//        if (!(theRoot == '+' || theRoot == '-')) {
-//            theRoot = vecExpress.at(x).at(y-2);
-//        }
-//
-//        cout << " The root is:  "<< theRoot << endl;
-//
-//
-//
-//        x++;
-//    }
-    
-    
-    
-    
-    
-    
-    
+    ET.MakeTree(vecExpress.at(7));
+ 
 }

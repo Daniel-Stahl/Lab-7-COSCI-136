@@ -1,33 +1,5 @@
 #include "ExpressionTree.hpp"
 
-TreeNode* ExpressionTree::MakeTree(string expression) {
-//    int strSize = expression.size();
-//    int x = 0;
-//    int pivPoint = 0;
-//    char tempChar;
-//    string leftSubTree;
-//    string rightSubTree;
-//
-//
-//    x = 0;
-//    while (x < strSize) {
-//        tempChar = expression.at(x);
-//        if (x < pivPoint) {
-//            leftSubTree += tempChar;
-//        } else if(x > pivPoint) {
-//            rightSubTree += tempChar;
-//        }
-//
-//        x++;
-//    }
-    
-    
-    
-    return FindPiv(expression);
-
-
-};
-
 bool ExpressionTree::IsOperand(char input) {
     if (input == '*' || input == '/' || input == '+' || input == '-') {
         return true;
@@ -36,7 +8,7 @@ bool ExpressionTree::IsOperand(char input) {
     }
 }
 
-TreeNode* ExpressionTree::FindPiv(string expression) {
+TreeNode* ExpressionTree::MakeTree(string expression) {
     TreeNode* pivot = new (std::nothrow) TreeNode;
     int strSize = expression.size();
     int x = 0;
@@ -48,9 +20,6 @@ TreeNode* ExpressionTree::FindPiv(string expression) {
     if (pivot) {
         while (x < strSize) {
             tempChar = expression.at(x);
-            
-            
-            // a+b*c-d/e
             
             if (IsOperand(tempChar) && (tempChar == '+' || tempChar == '-')) {
                 pivot->element = tempChar;
@@ -65,21 +34,8 @@ TreeNode* ExpressionTree::FindPiv(string expression) {
             x++;
         }
         
-        //expression.substr();
-        
-        x = 0;
-        while (x < strSize) {
-            tempChar = expression.at(x);
-            
-            if (x < pivPoint) {
-                leftSubTree += tempChar;
-            } else if(x > pivPoint) {
-                rightSubTree += tempChar;
-
-            }
-
-            x++;
-        }
+        leftSubTree = expression.substr(0, pivPoint);
+        rightSubTree = expression.substr(pivPoint+1, strSize);
     }
     
     if (root == nullptr) {
@@ -87,20 +43,14 @@ TreeNode* ExpressionTree::FindPiv(string expression) {
     }
     
     if (leftSubTree != "") {
-        pivot->left = FindPiv(leftSubTree);
+        pivot->left = MakeTree(leftSubTree);
     } else {
         return pivot;
     }
     
     if (rightSubTree != "") {
-        pivot->right = FindPiv(rightSubTree);
+        pivot->right = MakeTree(rightSubTree);
     }
-    
-    if (leftSubTree == "" && rightSubTree == "") {
-        return pivot;
-    }
-    
-    
-    
+
     return pivot;
 }
