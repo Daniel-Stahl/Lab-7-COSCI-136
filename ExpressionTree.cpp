@@ -23,7 +23,7 @@ TreeNode* ExpressionTree::MakeTree(string expression) {
     
     
     
-    return FindPiv(expression, root);
+    return FindPiv(expression);
 
 
 };
@@ -36,7 +36,7 @@ bool ExpressionTree::IsOperand(char input) {
     }
 }
 
-TreeNode* ExpressionTree::FindPiv(string expression, TreeNode* tNode) {
+TreeNode* ExpressionTree::FindPiv(string expression) {
     TreeNode* pivot = new (std::nothrow) TreeNode;
     int strSize = expression.size();
     int x = 0;
@@ -45,9 +45,12 @@ TreeNode* ExpressionTree::FindPiv(string expression, TreeNode* tNode) {
     string leftSubTree = "";
     string rightSubTree = "";
     
-    if (pivot && strSize > 1) {
+    if (pivot) {
         while (x < strSize) {
             tempChar = expression.at(x);
+            
+            
+            // a+b*c-d/e
             
             if (IsOperand(tempChar) && (tempChar == '+' || tempChar == '-')) {
                 pivot->element = tempChar;
@@ -62,13 +65,17 @@ TreeNode* ExpressionTree::FindPiv(string expression, TreeNode* tNode) {
             x++;
         }
         
+        //expression.substr();
+        
         x = 0;
         while (x < strSize) {
             tempChar = expression.at(x);
+            
             if (x < pivPoint) {
                 leftSubTree += tempChar;
             } else if(x > pivPoint) {
                 rightSubTree += tempChar;
+
             }
 
             x++;
@@ -80,12 +87,20 @@ TreeNode* ExpressionTree::FindPiv(string expression, TreeNode* tNode) {
     }
     
     if (leftSubTree != "") {
-        
-        root->left = FindPiv(leftSubTree, root->left);
-        
+        pivot->left = FindPiv(leftSubTree);
     } else {
-        root->right = FindPiv(rightSubTree, root->right);
+        return pivot;
     }
     
-    return root;
+    if (rightSubTree != "") {
+        pivot->right = FindPiv(rightSubTree);
+    }
+    
+    if (leftSubTree == "" && rightSubTree == "") {
+        return pivot;
+    }
+    
+    
+    
+    return pivot;
 }
