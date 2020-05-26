@@ -47,7 +47,7 @@ void LoadMenu() {
         switch (userSelection) {
             case 1:
                 // Loads expression 1 at a time and makes the tree.
-                pos = ET.LoadExpression(vecSize);
+                pos = ET.LoadExpression(vecSize-1);
                 cout << "\nLoading Expression: " << vecExpress.at(pos) << "\n";
                 tNode = ET.MakeTree(vecExpress.at(pos));
                 cout << "\n";
