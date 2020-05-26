@@ -8,6 +8,19 @@ bool ExpressionTree::IsOperand(char input) {
     }
 }
 
+int ExpressionTree::LoadExpression(int vecSize) {
+    static int num;
+    
+    if (num == vecSize) {
+        num = 1;
+        return num - 1;
+    }
+    
+    num++;
+    return num - 1;
+}
+
+
 TreeNode* ExpressionTree::MakeTree(string expression) {
     TreeNode* pivot = new (std::nothrow) TreeNode;
     int strSize = expression.size();
@@ -53,4 +66,39 @@ TreeNode* ExpressionTree::MakeTree(string expression) {
     }
 
     return pivot;
+}
+
+void ExpressionTree::DisplayPreorder(TreeNode* tNode) {
+    
+    if (tNode == nullptr) {
+        return;
+    }
+    
+    DisplayPreorder(tNode->left);
+    DisplayPreorder(tNode->right);
+    
+    cout << tNode->element << " ";
+}
+
+void ExpressionTree::DisplayPostorder(TreeNode* tNode) {
+    
+    
+}
+
+void ExpressionTree::DisplayInorder(TreeNode* tNode) {
+    
+    
+}
+
+void ExpressionTree::EmptyTree(TreeNode*& tNode) {
+    if (tNode == nullptr) {
+        return;
+    }
+    
+    DisplayPreorder(tNode->left);
+    DisplayPreorder(tNode->right);
+    
+    delete tNode;
+    
+    
 }

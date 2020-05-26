@@ -10,6 +10,11 @@ class ExpressionTree {
 public:
     bool IsOperand(char input);
     TreeNode* MakeTree(string expression);
+    int LoadExpression(int vecSize);
+    void DisplayPreorder(TreeNode* tNode);
+    void DisplayPostorder(TreeNode* tNode);
+    void DisplayInorder(TreeNode* tNode);
+    void EmptyTree(TreeNode*& tNode);
     
 private:
     TreeNode* root = nullptr;
