@@ -9,6 +9,12 @@ bool ExpressionTree::IsOperand(char input) {
 }
 
 int ExpressionTree::LoadExpression(int vecSize) {
+    
+    if (root != nullptr) {
+        EmptyTree(root);
+        root = nullptr;
+    }
+    
     static int num;
     
     if (num == vecSize) {
@@ -75,7 +81,7 @@ void ExpressionTree::DisplayPreorder(TreeNode* tNode) {
         return;
     }
     
-    cout << tNode->element << " ";
+    cout << tNode->element << "\t";
     
     DisplayPreorder(tNode->left);
     DisplayPreorder(tNode->right);
@@ -86,10 +92,10 @@ void ExpressionTree::DisplayPostorder(TreeNode* tNode) {
         return;
     }
     
-    DisplayPreorder(tNode->left);
-    DisplayPreorder(tNode->right);
+    DisplayPostorder(tNode->left);
+    DisplayPostorder(tNode->right);
     
-    cout << tNode->element << " ";
+    cout << tNode->element << "\t";
     
 }
 
@@ -98,23 +104,43 @@ void ExpressionTree::DisplayInorder(TreeNode* tNode) {
         return;
     }
     
+    if (!(tNode->left == nullptr && tNode->right == nullptr)) {
+        cout << "(";
+    }
+    
     DisplayInorder(tNode->left);
     
-    cout << tNode->element << " ";
+    if (!IsOperand(tNode->element)) {
+        cout << "(";
+    }
+    
+    cout << tNode->element;
     
     DisplayInorder(tNode->right);
     
+    if (!IsOperand(tNode->element)) {
+        cout << ")";
+    }
+
+    if (!(tNode->left == nullptr && tNode->right == nullptr)) {
+        cout << ")";
+    }
+    
+    
 }
 
-void ExpressionTree::EmptyTree(TreeNode*& tNode) {
+void ExpressionTree::EmptyTree(TreeNode* tNode) {
     if (tNode == nullptr) {
         return;
     }
     
-    DisplayPreorder(tNode->left);
-    DisplayPreorder(tNode->right);
+    EmptyTree(tNode->left);
+    EmptyTree(tNode->right);
     
     delete tNode;
-    
-    
+}
+
+ExpressionTree::~ExpressionTree() {
+    EmptyTree(root);
+    root = nullptr;
 }

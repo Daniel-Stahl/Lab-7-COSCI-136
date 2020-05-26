@@ -10,26 +10,12 @@ void LoadMenu();
 
 int main() {
     LoadMenu();
-    
-    
-    
- 
 }
-
-/*
-Menu:
-
-1) Load expression (makes an exptree and deletes the previous one)
-2) Print preorder (Checks if there is a tree)
-3) Print inorder (Checks if there is a tree)
-4) Print postorder (Checks if there is a tree)
-
-
-*/
 
 void LoadMenu() {
     int userSelection;
     int vecSize = 1;
+    int pos = 0;
     ifstream inFile;
     string input;
     vector<string> vecExpress;
@@ -55,41 +41,39 @@ void LoadMenu() {
     }
     
     do {
-        cout << "Main Menu\n 1) Load expression\n 2) Print preorder\n 3) Print inorder\n 4) Print postorder\n 5) Exit program\n Choice: ";
+        cout << "Main Menu\n 1) Load expression\n 2) Print preorder\n 3) Print postorder\n 4) Print inorder\n 5) Exit program\n Choice: ";
         cin >> userSelection;
         
         switch (userSelection) {
             case 1:
                 // Loads expression 1 at a time and makes the tree.
-                tNode = ET.MakeTree(vecExpress.at(ET.LoadExpression(vecSize)));
-                
+                pos = ET.LoadExpression(vecSize);
+                cout << "\nLoading Expression: " << vecExpress.at(pos) << "\n";
+                tNode = ET.MakeTree(vecExpress.at(pos));
+                cout << "\n";
                 break;
                 
             case 2:
                 //Print preorder
-                
+                cout << "\nPreorder: ";
                 ET.DisplayPreorder(tNode);
-                
+                cout << "\n" << endl;
                 break;
                 
             case 3:
-                //Print inorder
-                ET.DisplayInorder(tNode);
-                
+                //Print postorder
+                cout << "\nPostorder: ";
+                ET.DisplayPostorder(tNode);
+                cout << "\n" << endl;
                 break;
                 
             case 4:
-                //Print postorder
-                ET.DisplayPostorder(tNode);
+                //Print inorder
+                cout << "\nInorder: ";
+                ET.DisplayInorder(tNode);
+                cout << "\n" << endl;
                 break;
         }
-        
-        
-        
-        
     } while (userSelection != 5);
-    
-    
-    
     
 }

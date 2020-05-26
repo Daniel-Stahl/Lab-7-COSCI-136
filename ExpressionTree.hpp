@@ -14,7 +14,8 @@ public:
     void DisplayPreorder(TreeNode* tNode);
     void DisplayPostorder(TreeNode* tNode);
     void DisplayInorder(TreeNode* tNode);
-    void EmptyTree(TreeNode*& tNode);
+    void EmptyTree(TreeNode* tNode);
+    ~ExpressionTree();
     
 private:
     TreeNode* root = nullptr;
