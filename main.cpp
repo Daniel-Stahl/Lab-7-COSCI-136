@@ -74,10 +74,13 @@ void LoadMenu() {
                 
             case 3:
                 //Print inorder
+                ET.DisplayInorder(tNode);
+                
                 break;
                 
             case 4:
                 //Print postorder
+                ET.DisplayPostorder(tNode);
                 break;
         }
         

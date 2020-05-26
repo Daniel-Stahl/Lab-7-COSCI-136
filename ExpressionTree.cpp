@@ -23,6 +23,8 @@ int ExpressionTree::LoadExpression(int vecSize) {
 
 TreeNode* ExpressionTree::MakeTree(string expression) {
     TreeNode* pivot = new (std::nothrow) TreeNode;
+    pivot->left = nullptr;
+    pivot->right = nullptr;
     int strSize = expression.size();
     int x = 0;
     int pivPoint = 0;
@@ -69,7 +71,17 @@ TreeNode* ExpressionTree::MakeTree(string expression) {
 }
 
 void ExpressionTree::DisplayPreorder(TreeNode* tNode) {
+    if (tNode == nullptr) {
+        return;
+    }
     
+    cout << tNode->element << " ";
+    
+    DisplayPreorder(tNode->left);
+    DisplayPreorder(tNode->right);
+}
+
+void ExpressionTree::DisplayPostorder(TreeNode* tNode) {
     if (tNode == nullptr) {
         return;
     }
@@ -78,15 +90,19 @@ void ExpressionTree::DisplayPreorder(TreeNode* tNode) {
     DisplayPreorder(tNode->right);
     
     cout << tNode->element << " ";
-}
-
-void ExpressionTree::DisplayPostorder(TreeNode* tNode) {
-    
     
 }
 
 void ExpressionTree::DisplayInorder(TreeNode* tNode) {
+    if (tNode == nullptr) {
+        return;
+    }
     
+    DisplayInorder(tNode->left);
+    
+    cout << tNode->element << " ";
+    
+    DisplayInorder(tNode->right);
     
 }
 
