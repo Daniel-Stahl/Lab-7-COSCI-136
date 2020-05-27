@@ -125,8 +125,6 @@ void ExpressionTree::DisplayInorder(TreeNode* tNode) {
     if (!(tNode->left == nullptr && tNode->right == nullptr)) {
         cout << ")";
     }
-    
-    
 }
 
 void ExpressionTree::EmptyTree(TreeNode* tNode) {

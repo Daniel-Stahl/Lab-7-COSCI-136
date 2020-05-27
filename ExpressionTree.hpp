@@ -1,7 +1,6 @@
 #include "TreeNode.hpp"
 #include <string>
 #include <iostream>
-#include <vector>
 #include <new>
 
 using namespace std;
